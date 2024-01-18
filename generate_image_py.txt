@@ -1,0 +1,46 @@
+import numpy as np
+import pandas as pd
+import cv2
+import matplotlib.pyplot as plt
+
+
+def create_16bit_gradient_image(width, height):
+    image = np.zeros((height, width), dtype=np.uint16)
+    for y in range(height):
+        for x in range(width):
+            intensity = 65535 #int((y/height) * 65535)
+            
+            if (y % 5 == 0) or (y == (height-1) or (y==0)):
+                image[y, x] = intensity
+
+            image[x, x] = intensity
+            image[(x+50)%width, x] = intensity
+
+            if (x % 5 == 0) or (x == (width-1)) or (x==0):
+                image[y, x] = intensity
+
+            if y % 5 == 0:
+                image[y,x] = intensity
+
+            if (y-x) % 99 == 0:
+                image[np.abs(y - 99), x] = intensity
+                
+            
+                
+    return image
+
+def save_image(image, filename, title):
+    plt.imshow(image, cmap='gray', vmin=0, vmax=65535)
+    plt.title(title)
+    plt.axis('off')
+    plt.show()
+
+    # Save the image as np.uint16
+    cv2.imwrite(filename, image.astype(np.uint16))
+
+# Create a 16-bit gradient image
+width, height = 150, 150
+gradient_image_16bit = create_16bit_gradient_image(width, height)
+gradient_image_16bit = np.array(gradient_image_16bit)
+# Display the image
+save_image(gradient_image_16bit, "img1.tiff", title="original image")
