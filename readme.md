@@ -9,6 +9,8 @@ I would like to briefly mention the things that I covered within this document. 
 ### Solution:
 First, I have generated a sample image using Python, to use in my C++ algorithm. An image with repetitions would be nice to see if my search results are correct or not, therefore I have built an image with repetitions that I know.
 
+<img src=""></img>
+
 The image above was used during the tests I have done at C++ side. For example, if you consider the first 5x5 pattern of the image above, I should find first entries of the matching patterns, i.e. the [0,0] points of the patterns.
 
 So, my serial algorithm’s solution is the following to find these matched points:
