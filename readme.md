@@ -2,14 +2,18 @@
 For every possible 5×5 A and B patterns, exact matches will be searched, and the coordinate result will be listed at the console.
 
 ## Introduction:
-Within this paragraph, I would like to briefly mention the things that I covered within this document. First, I will be explaining the solution I found to the sample image processing problem given in the problem by explaining my serial and the two different parallelization techniques’ algorithms. Secondly, I will go over how to run the source codes I am sharing and the design of the program. About the design of the program, the source codes have been written in C++ language. OpenMP library have been used to parallelize the search algorithm. Two different parallelization techniques were used with OpenMP. And finally, I will share my performance results that I got with serial version of the algorithm and the parallel versions of the algorithm, with efficiency and speedup metrics.
+I would like to briefly mention the things that I covered within this document. First, I will be explaining the solution I found to the sample image processing problem by explaining my serial and the two different parallelization techniques’ algorithms. Secondly, I will go over how to run the source codes I am sharing and the design of the program. And finally, I will share my performance results that I got with serial version of the algorithm and the parallel versions of the algorithm, with efficiency and speedup metrics. About the design of the program, the source codes have been written in C++ language. OpenMP library have been used to parallelize the search algorithm. Two different parallelization techniques were used with OpenMP.
 
 ## Path to Solution:
 
 ### Solution:
 First, I have generated a sample image using Python, to use in my C++ algorithm. An image with repetitions would be nice to see if my search results are correct or not, therefore I have built an image with repetitions that I know.
 
-The image above was used during the tests I have done at C++ side. For example, if you consider the first 5x5 pattern of the image above, I should find first entries of the matching patterns, i.e. the [0,0] points of the patterns.
+<img src="images/img.png">
+
+The image above was used during the tests I have done at C++ side. For example, if you consider the first 5x5 pattern of the image above, I should find first entries of the matching patterns, i.e. the [0,0] points of the patterns below:
+
+<img src="images/img_1.png">
 
 So, my serial algorithm’s solution is the following to find these matched points:
 
@@ -28,9 +32,9 @@ In my first version, since there is no dependency between rows, I have paralleli
 
 In my second version of the OpenMP parallelization, I have parallelized my second for loop and distributed the work to the threads equally and column-wise this time. I want to explain my parallel algorithms with also visualizing them with 6 threads on 150x150 images. The algorithms can also be seen from the following image:
 
-[Version 2 Parallelization Image]
+<img src="images/img_2.png">
 
-As we can see, on version 1, we equally distributed threads to the rows and each thread needs to finish the assigned rows before moving on to the next job (we can follow this from outputs as well). On the other hand, in version 2, column-wise distribution happened to the threads. Threads finish their assigned columns first before moving on to the next columns. Assignment is distributed equally between threads on both versions.
+On version 1, we equally distributed threads to the rows and each thread needs to finish the assigned rows before moving on to the next job (we can follow this from outputs as well). On the other hand, in version 2, column-wise distribution happened to the threads. Threads finish their assigned columns first before moving on to the next columns. Assignment is distributed equally between threads on both versions.
 
 ## How to run source codes:
 
@@ -38,3 +42,20 @@ There is only a single main.cpp file which is using “OpenMP” and “OpenCV�
 
 Once the program is run successfully after building it, it will start getting inputs from the user and will complete the task by writing results to the given results file name. An example from the console:
 
+<img src="images/img_3.png">
+
+## Performance Results (speeds) on a sample 150x150 Image
+Total matches found within this sample image: 12.403.513
+My results and their visualisations are as follows:
+
+<img src="images/img_4.png">
+
+#### The visualizations:
+<img src="images/img_5.png">
+<img src="images/img_6.png">
+
+## Conclusion
+According to results, we can see that parallelization techniques 1 and 2 are performing almost same
+for different number of threads when we search for 5x5 patches within image. Algorithm looks like
+most efficient according to Efficiency value at 2 threads, but it is fastest after 16 threads and 32
+threads. Depending on the need, speedup or efficiency can be considered first.
