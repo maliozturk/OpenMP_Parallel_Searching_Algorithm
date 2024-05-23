@@ -2,7 +2,7 @@
 For every possible 5×5 A and B patterns, exact matches will be searched, and the coordinate result will be listed at the console.
 
 ## Introduction:
-Within this paragraph, I would like to briefly mention the things that I covered within this document. First, I will be explaining the solution I found to the sample image processing problem given in the problem by explaining my serial and the two different parallelization techniques’ algorithms. Secondly, I will go over how to run the source codes I am sharing and the design of the program. About the design of the program, the source codes have been written in C++ language. OpenMP library have been used to parallelize the search algorithm. Two different parallelization techniques were used with OpenMP. And finally, I will share my performance results that I got with serial version of the algorithm and the parallel versions of the algorithm, with efficiency and speedup metrics.
+I would like to briefly mention the things that I covered within this document. First, I will be explaining the solution I found to the sample image processing problem by explaining my serial and the two different parallelization techniques’ algorithms. Secondly, I will go over how to run the source codes I am sharing and the design of the program. And finally, I will share my performance results that I got with serial version of the algorithm and the parallel versions of the algorithm, with efficiency and speedup metrics.  About the design of the program, the source codes have been written in C++ language. OpenMP library have been used to parallelize the search algorithm. Two different parallelization techniques were used with OpenMP. 
 
 ## Path to Solution:
 
